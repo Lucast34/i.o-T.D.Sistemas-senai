@@ -6,7 +6,7 @@ import java.util.Scanner;
  *
  * @author Lucas
  */
-public class Lucas {
+public class Bhaskara {
 
     public static void main(String[] args) {
         
