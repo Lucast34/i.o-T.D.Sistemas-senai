@@ -36,13 +36,13 @@ public class CanetaMain {
         panda.carga = 5;
         panda.ponta = 00f;
         
-            System.out.println(panda.getModelo());
+            System.out.println(panda.modelo);
         
-            System.out.println(panda.getCor());
+            System.out.println(panda.cor);
         
-            System.out.println(panda.getCarga());
+            System.out.println(panda.carga);
         
-            System.out.println(panda.getPonta());
+            System.out.println(panda.ponta);
         
     }
 }
