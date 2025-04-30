@@ -30,7 +30,7 @@ public class IotTd {
                 
                 // ternario
                 
-                String response=(num1 == 0 % 2)?"O numero: "+num1+" e par":"O numero: "+num1+" e impar"; 
+                String response=(num1% 2 == 0)?"O numero: "+num1+" e par":"O numero: "+num1+" e impar"; 
                
                 
                 JOptionPane.showMessageDialog(null,response,"Programa impar e par"

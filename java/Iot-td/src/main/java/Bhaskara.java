@@ -12,9 +12,9 @@ public class Bhaskara {
         
         if(delta > 0){
             
+            
             double xa = ((-(b) + Math.sqrt(delta))/2*a);
             double xb = ((-(b) - Math.sqrt(delta))/2*a);
-            
             System.out.format("O valor de delta:%.0f\nO valor de x1:%.0f"
                     + "\nO valor de x2:%.01f",delta,xa,xb);
             
