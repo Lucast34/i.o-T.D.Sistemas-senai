@@ -44,7 +44,7 @@ public class Triangulo {
 
    public String VerifcarTriangulo(){
        
-       System.out.format("Lado dos Triangulos\na:%d\nb:%d\nc:%d",getA(),getB(),getC());
+       System.out.format("Lado dos Triangulos\na:%d\nb:%d\nc:%d\n",getA(),getB(),getC());
        
        String response = null;
        
