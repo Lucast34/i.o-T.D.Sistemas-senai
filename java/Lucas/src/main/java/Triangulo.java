@@ -44,11 +44,22 @@ public class Triangulo {
        boolean j;
        
        if(a<b+c && b<c+a && c<b+a){
-           j = true;
+           if(a == b && a == c && b == c){
+               String response = "Triângulo escaleno";
+               return response;
+           }else if(a == b || a == c || b == c){
+               String response = "Triângulos isosceles";
+               return response;
+           }else{
+               String response = "Triângulo escaleno";
+               return response;
+           }
        }
        else{
+           String response = "Não existe triângulo";
+           return response;
        }
-       return null;
+       
    }
     
 }

@@ -41,7 +41,7 @@ public class Bhaskara {
     }
     
     public double Delta(){
-        return (Math.pow(b, 2)+(-4*(a*c)));
+        return (Math.pow(getB(), 2)+(-4*(getA()*getC())));
     }
     
     public void VerificaRaiz(){
@@ -51,8 +51,8 @@ public class Bhaskara {
         if (delta < 0){
             System.out.println("A raiz não existe");
         }else{
-            double X1 = ((-b)+ Math.sqrt(delta))/2*a;
-            double X2 = ((-b)- Math.sqrt(delta))/2*a;
+            double X1 = ((-getB())+ Math.sqrt(delta))/2*a;
+            double X2 = ((-getB())- Math.sqrt(delta))/2*a;
             
             System.out.format("\nDelta:%02f\nx1:%02f\nn2:%02f",delta,X1,X2);
         }
