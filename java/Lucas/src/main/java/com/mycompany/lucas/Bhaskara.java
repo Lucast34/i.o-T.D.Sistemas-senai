@@ -12,7 +12,7 @@ package com.mycompany.lucas;
 public class Bhaskara {
     private double a,b,c;
 
-    public Bhaskara() {
+    public Bhaskara(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;

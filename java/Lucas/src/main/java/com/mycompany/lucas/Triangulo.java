@@ -10,7 +10,7 @@ package com.mycompany.lucas;
  * @author ead
  */
 public class Triangulo {
-    public int a,b,c;
+    private int a,b,c;
 
     public Triangulo(int a, int b, int c) {
         this.a = a;
@@ -43,25 +43,28 @@ public class Triangulo {
     }
 
    public String VerifcarTriangulo(){
-       boolean j;
        
-       if(a<b+c && b<c+a && c<b+a){
-           if(a == b && a == c && b == c){
-               String response = "Triângulo escaleno";
-               return response;
-           }else if(a == b || a == c || b == c){
-               String response = "Triângulos isosceles";
-               return response;
-           }else{
-               String response = "Triângulo escaleno";
-               return response;
+       System.out.format("Lado dos Triangulos\na:%d\nb:%d\nc:%d",getA(),getB(),getC());
+       
+       String response = null;
+       
+        if(getA()<getB()+getC() && getB()<getC()+getA() && getC()<getB()+getA()){
+            if(getA() == getB() && getA() == getC() && getB() == getC()){
+               response = "Triângulo escaleno";
+               
+           }else if(getA() == getB() || getA() == getC() || getB() == getC()){
+               response = "Triângulos isosceles";
+               
+           }else if (getA() != getB() && getA() != getC() && getB() != getC()){
+               response= "Triângulo escaleno";
+               
            }
        }
-       else{
-           String response = "Não existe triângulo";
-           return response;
+        else{
+           response = "Não existe triângulo";
+           
        }
-       
+       return response;
    }
-    
+   
 }

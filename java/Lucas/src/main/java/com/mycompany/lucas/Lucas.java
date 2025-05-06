@@ -19,37 +19,52 @@ public class Lucas {
     public static void main(String[] args) {
         
         Scanner input = new Scanner(System.in);
-        
-        Bhaskara bha = new Bhaskara();
-        
-        ImparPar resp = new ImparPar();
-        
+ 
         System.out.println("Programa de Impar e Par");
         
         System.out.println("digte um numero >> ");
         
         int val = input.nextInt();
                 
-        resp.setA(val);           
+        ImparPar resp = new ImparPar(val);           
         
         System.out.println("Programa bhaskara");
 
         System.out.println("Digite o valor de A >> ");
+        
         double a = input.nextDouble();
 
         System.out.println("Digite o valor de B >> ");
+        
         double b = input.nextDouble();
 
         System.out.println("Digite o valor de C >> ");
         double c = input.nextDouble();
             
-        bha.setA(a);
-        bha.setB(b);
-        bha.setC(c);
+        Bhaskara bha = new Bhaskara(a,b,c);
+        
+        System.out.println("Programa verificador de Triangulo");
+        
+        System.out.println("Digite o lado A >> ");
+        
+        int ladoa = input.nextInt();
+        
+        System.out.println("Digite o lado B >> ");
+        
+        int ladob = input.nextInt();
+        
+        System.out.println("Digite o lado C >> ");
+        
+        int ladoc = input.nextInt();
+        
+        Triangulo tr = new Triangulo(ladoa,ladob,ladoc);
+        
         
         String texto1 = resp.VerificaImPar();
         
         String texto2 = bha.VerificaRaiz();
+        
+        String texto3 = tr.VerifcarTriangulo();
         
         String caminhoArquivo = "test.txt"; //nome do arquivo de saida
         

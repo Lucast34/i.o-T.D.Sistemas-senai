@@ -1,4 +1,4 @@
-O numero2é par
+O numero 56 é par
 Delta:81,000000
 x1:2,000000
 n2:-7,000000

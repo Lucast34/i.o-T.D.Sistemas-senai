@@ -13,7 +13,7 @@ package com.mycompany.lucas;
 public class ImparPar {
     private int a;
 
-    public ImparPar() {
+    public ImparPar(int a) {
         this.a = a;
     
     }
@@ -29,7 +29,7 @@ public class ImparPar {
     
     public String VerificaImPar(){
     
-        String response = (getA() %2 == 0)?"O numero"+a+"é par":"O numero"+a+"é impar";
+        String response = (getA() %2 == 0)?"O numero "+a+" é par":"O numero "+a+" é impar";
         
         return response;
     }
