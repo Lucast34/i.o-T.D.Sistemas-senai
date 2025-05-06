@@ -71,6 +71,7 @@ public class Lucas {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminhoArquivo))){
             escritor.write(texto1);
             escritor.write(texto2);
+            escritor.write(texto3);
             
             System.out.println("Texto salvo com sucesso em "+caminhoArquivo);             
         } catch (IOException e){
