@@ -9,21 +9,27 @@ package com.mycompany.heranca;
  * @author ead
  */
 public class Aluno extends Pessoa{
-    private int matr;
-    private String curso;
-    
+    private String curso,matr;
     
     
     public void cancelarMatr(){
-        setMatr(0);
+        setMatr(null);
         setCurso(null);
     }
 
-    public int getMatr() {
+    public Aluno(String curso, String matr, String nome, int idade, char sexo) {
+        super(nome, idade, sexo);
+        this.curso = curso;
+        this.matr = matr;
+    }
+
+    
+    
+    public String getMatr() {
         return matr;
     }
 
-    public void setMatr(int matr) {
+    public void setMatr(String matr) {
         this.matr = matr;
     }
 
