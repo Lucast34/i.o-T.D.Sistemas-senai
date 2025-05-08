@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.lucas;
+
 
 import java.util.Scanner;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.io.FileWriter;
-import java.io.FileReader;
 
 
-/**
- *
- * @author ead
- */
+
 public class Lucas {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -49,16 +42,20 @@ public class Lucas {
             
             pessoas[i] = new Pessoa(nome,cpf,dataLocal,altura,peso);
         }
-        
-        try (FileWriter write = new FileWriter("pessoa.txt")){
+            
+        String arquivo = "pessoas.txt" ;
+               
+        try (FileWriter write = new FileWriter(arquivo)){
             write.write("Nome;Cpf:dataNascimento;Altura.;Peso;Imc;MaiorIdade\n");
             for(Pessoa p: pessoas){
                 write.write(p.toCSV()+"\n");
             }
-            System.out.println("\nArquivo 'pessoas.txt salvo com sucesso'");
+            System.out.println("\nArquivo "+arquivo+"salvo com sucesso'");
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
         }
+        
         input.close();
+        
     }  
 }
