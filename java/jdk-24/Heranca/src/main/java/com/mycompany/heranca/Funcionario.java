@@ -38,5 +38,17 @@ public class Funcionario extends Pessoa{
         this.trabalhando = trabalhando;
     }
     
+    @Override
+    public void fazerAniv() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Contrato{" + "setor=" + setor + ", trabalhando=" + trabalhando + '}';
+    }
+    
+    
+    
     
 }

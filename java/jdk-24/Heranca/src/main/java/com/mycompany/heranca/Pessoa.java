@@ -8,14 +8,12 @@ package com.mycompany.heranca;
  *
  * @author ead
  */
-public class Pessoa {
+abstract class Pessoa {
     private String nome;
     private int idade;
     private char sexo;
 
-    public void fazerAniv() {
-        System.out.println("Feliz aniversario");
-    }
+    public abstract void fazerAniv();
 
     public Pessoa(String nome, int idade, char sexo) {
         this.nome = nome;
@@ -45,6 +43,11 @@ public class Pessoa {
 
     public void setSexo(char sexo) {
         this.sexo = sexo;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + '}';
     }
     
     

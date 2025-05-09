@@ -17,14 +17,19 @@ public class Aluno extends Pessoa{
         setCurso(null);
     }
 
+    @Override
+    public void fazerAniv() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+    
+    
     public Aluno(String curso, String matr, String nome, int idade, char sexo) {
         super(nome, idade, sexo);
         this.curso = curso;
         this.matr = matr;
     }
 
-    
-    
     public String getMatr() {
         return matr;
     }
@@ -40,5 +45,12 @@ public class Aluno extends Pessoa{
     public void setCurso(String curso) {
         this.curso = curso;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Matricula{" + "curso=" + curso + ", matr=" + matr + '}';
+    }
+    
+    
     
 }

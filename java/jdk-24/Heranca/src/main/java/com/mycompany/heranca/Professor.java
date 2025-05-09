@@ -39,6 +39,20 @@ public class Professor extends Pessoa{
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
+
+    @Override
+    public void fazerAniv() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Escola{" + "salario=" + salario + ", especialidade=" + especialidade + '}';
+    }
+    
+    
+    
+    
     
     
 }
