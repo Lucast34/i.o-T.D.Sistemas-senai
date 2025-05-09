@@ -11,6 +11,14 @@ package com.mycompany.banco;
 public class Banco {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        
+        
+        
+        
+        ContaBanco Cb = new ContaBanco(0, tipo, dono, 0, status);
+        
+        
+        
     }
 }

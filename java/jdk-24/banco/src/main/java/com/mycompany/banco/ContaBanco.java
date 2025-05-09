@@ -1,3 +1,5 @@
+package com.mycompany.banco;
+
 import java.util.Scanner;
         
 public class ContaBanco {
@@ -80,23 +82,45 @@ public class ContaBanco {
         
         switch(esc) {
             case 1:
-                System.out.println("");
+                System.out.println("Depositou");
                 break;
             default:
                 throw new AssertionError();
         }
         
-        
-        
-        
     }
     
     // sacar
     public void sacar(){
+        System.out.println("Sacar");
+        
+        Scanner input = new Scanner(System.in);
+        
+        int esc = input.nextInt();
+        
+        switch(esc) {
+            case 1:
+                System.out.println("Sacou");
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
     
     // pegar mensalidade
     public void pegarMensal(){
-    
+        
+        double val;
+        
+        if("CC".equals(this.getTipo())){
+            val = 50.00;
+            
+            this.setSaldo(this.saldo -= val);
+        }else if("CP".equals(this.getTipo())){
+            val = 90.00;
+            
+            this.setSaldo(this.saldo -= val);
+        }
+         
     }
 }
