@@ -23,6 +23,17 @@ public class Ave extends Animal{
     public void setCorPena(String corPena) {
         this.corPena = corPena;
     }
+
+    @Override
+    public void emitirSom() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String toString() {
+        return "Ave{" + "corPena=" + corPena + '}';
+    }
+    
     
     
 }

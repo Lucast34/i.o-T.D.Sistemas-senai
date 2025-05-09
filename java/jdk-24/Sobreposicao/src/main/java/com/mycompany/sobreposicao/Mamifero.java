@@ -23,6 +23,17 @@ public class Mamifero extends Animal{
     public void setCorPelo(String corPelo) {
         this.corPelo = corPelo;
     }
+
+    @Override
+    public void emitirSom() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String toString() {
+        return "Mamifero{" + "corPelo=" + corPelo + '}';
+    }
+    
     
       
     

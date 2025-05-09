@@ -11,6 +11,9 @@ package com.mycompany.sobreposicao;
 public class Sobreposicao {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Repetil tartaruga = new Repetil("Azul", 80, 130, "5");
+        
+        System.out.println(tartaruga.toString());
+        
     }
 }

@@ -8,7 +8,7 @@ package com.mycompany.sobreposicao;
  *
  * @author ead
  */
-public class Animal {
+public abstract class Animal {
     private double peso;
     private int idade;
     private String menbros;
@@ -42,6 +42,13 @@ public class Animal {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" + "peso=" + peso + ", idade=" + idade + ", menbros=" + menbros + '}';
+    }
+    
+    
     
     public void locomover(){
         System.out.println("o animal está se movendo");
@@ -51,8 +58,7 @@ public class Animal {
         System.out.println("Alimentar");
     }
     
-    public void emitirSom(){
-        System.out.println("O animal faz um som");
-    }
+   
+    public abstract void emitirSom();
     
 }

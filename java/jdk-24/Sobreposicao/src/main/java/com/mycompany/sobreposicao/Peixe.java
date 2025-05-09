@@ -27,5 +27,17 @@ public class Peixe extends Animal {
     public void soltarBolha(){
         System.out.println("blub blub blub");
     }
+
+    @Override
+    public void emitirSom() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String toString() {
+        return "Peixe{" + "corEscama=" + corEscama + '}';
+    }
+    
+    
     
 }
