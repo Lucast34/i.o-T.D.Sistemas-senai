@@ -108,7 +108,7 @@ public class ContaBanco {
     }
     
     // pegar mensalidade
-    public void pegarMensal(){
+    public void pagarMensal(){
         
         double val;
         
