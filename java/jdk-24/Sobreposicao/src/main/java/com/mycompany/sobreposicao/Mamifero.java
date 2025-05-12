@@ -23,7 +23,19 @@ public class Mamifero extends Animal{
     public void setCorPelo(String corPelo) {
         this.corPelo = corPelo;
     }
+    
+    public String reagir(boolean reacao){
+        
+        if(reacao == true){
 
+            return "agradavel";
+        }else{
+            System.out.println("O animal está rosnando");
+            return "agressivo";
+        }
+    }
+
+    
     @Override
     public void emitirSom() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -33,8 +45,11 @@ public class Mamifero extends Animal{
     public String toString() {
         return "Mamifero{" + "corPelo=" + corPelo + '}';
     }
-    
-    
-      
-    
+
+    @Override
+    public void falarFrase() {
+        if("agradavel".equals(reagir()){
+            System.out.println("O animal está abanando");
+        }
+    }
 }
