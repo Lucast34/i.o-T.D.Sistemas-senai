@@ -73,7 +73,7 @@ public class UsuarioDAO {
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setTelefone(rs.getString("telefone"));
-                usuario.setNome(rs.getString("tipo_usuario"));
+                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
                 
                 lista.add(usuario);
                 
