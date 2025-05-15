@@ -5,6 +5,7 @@
 package biblioteca;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -14,12 +15,16 @@ public class Biblioteca {
 
     
     public static void main(String[] args){
+        //boolean val= true;
         
         UsuarioDAO userDAO = new UsuarioDAO();
         
-        Usuario usr = new Usuario(0, "Jubileu", "jublieu@email.com", "61 9919965"
-                ,"De mentirinha");
+        //while(val)
+            
+        Usuario usr = new Usuario(0, "Creuza", "creuza@email.com", "61 95555555"
+                ,"Desativado");
         
+        Usuario usrNull = new Usuario();
         
         try {
             userDAO.criarUsuario(usr);
@@ -28,5 +33,14 @@ public class Biblioteca {
         } catch (SQLException e) {
             System.out.println("Erro: "+ e.getMessage());
         }   
+        
+        try {
+            userDAO.listarUsuarios();
+            
+            
+        } catch (SQLException e) {
+            System.out.println("Erro: "+e.getMessage());
+            
+        }
     }
 }

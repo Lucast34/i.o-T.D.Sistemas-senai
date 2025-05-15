@@ -23,6 +23,9 @@ public class Usuario {
         this.tipo_usuario = tipo_usuario;
     }
 
+    public Usuario() {
+    }
+    
     public int getId() {
         return id;
     }
