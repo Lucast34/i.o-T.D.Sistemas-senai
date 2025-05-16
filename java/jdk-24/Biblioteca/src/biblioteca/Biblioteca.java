@@ -34,24 +34,48 @@ public class Biblioteca {
 //            System.out.println("Erro: "+ e.getMessage());
 //        }   
 //        
+//        try {
+//            List<Usuario> usuarios = userDAO.listarUsuarios();  
+//            if(usuarios.isEmpty()){
+//                System.out.println("A lista esta Vazia");
+//            }else{
+//                for(Usuario usuario : usuarios){
+//                    System.out.println("ID: "+usuario.getId());
+//                    System.out.println("Nome: "+usuario.getNome());
+//                    System.out.println("Email: "+usuario.getEmail());
+//                    System.out.println("Telefone: "+usuario.getTelefone());
+//                    System.out.println("Tipo: "+usuario.getTipo_usuario());
+//                    System.out.println("________________X_______________");
+//                }
+//            }
+//            
+//        } catch (SQLException e) {
+//            System.out.println("Erro: "+e.getMessage());
+//            
+//        }
+
         try {
-            List<Usuario> usuarios = userDAO.listarUsuarios();  
-            if(usuarios.isEmpty()){
-                System.out.println("A lista esta Vazia");
-            }else{
-                for(Usuario usuario : usuarios){
-                    System.out.println("ID: "+usuario.getId());
-                    System.out.println("Nome: "+usuario.getNome());
-                    System.out.println("Email: "+usuario.getEmail());
-                    System.out.println("Telefone: "+usuario.getTelefone());
-                    System.out.println("Tipo: "+usuario.getTipo_usuario());
-                    System.out.println("________________X_______________");
-                }
+            
+            int idBucador =2;
+            
+            Usuario usuario = userDAO.bucasUsuarioPorId(idBucador);
+            
+            if(usuario!= null){
+                System.out.println("O usuario foi encontrado");
+            
+            
+                System.out.println("ID: "+usuario.getId());
+                System.out.println("Nome: "+usuario.getNome());
+                System.out.println("Email: "+usuario.getEmail());
+                System.out.println("Telefone: "+usuario.getTelefone());
+                System.out.println("Tipo: "+usuario.getTipo_usuario());
+                System.out.println("________________X_______________");
             }
-            
-        } catch (SQLException e) {
+            else{
+                System.out.println("O usuario não foi encontrado -> id:"+idBucador);
+            } 
+        }catch (SQLException e) {
             System.out.println("Erro: "+e.getMessage());
-            
         }
     }
 }

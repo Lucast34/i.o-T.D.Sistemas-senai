@@ -86,10 +86,43 @@ public class UsuarioDAO {
             if(rs != null && pstm != null){
                 rs.close();
                 pstm.close();
-            
-        }
-        
+            }
         }
         return lista;
+       
+    }
+    public Usuario bucasUsuarioPorId(int id) throws SQLException{
+        String sql = "SELECT * FROM tb_usuario WHERE id=?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+          
+        ResultSet rs = null;
+        Usuario usuario = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            
+            if (rs.next()){
+                usuario = new Usuario();
+                
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTelefone(rs.getString("telefone"));
+                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        } finally {
+            if(rs != null && pstm != null){
+                rs.close();
+                pstm.close();
+            }    
+        }
+        return usuario;
     }
 }
