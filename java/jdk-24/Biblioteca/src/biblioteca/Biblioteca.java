@@ -77,5 +77,15 @@ public class Biblioteca {
         }catch (SQLException e) {
             System.out.println("Erro: "+e.getMessage());
         }
+        
+        try {
+            
+            int idBucador =2;
+            
+            Usuario usuario = userDAO.atualizarUsuario(usuario);
+            
+            
+        } catch (Exception e) {
+        }
     }
 }

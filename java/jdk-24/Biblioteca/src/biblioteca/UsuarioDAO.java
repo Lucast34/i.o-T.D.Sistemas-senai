@@ -124,5 +124,35 @@ public class UsuarioDAO {
             }    
         }
         return usuario;
+        
+    }
+    public void atualizarUsuario(Usuario usuario) throws SQLException{
+        String sql = "UPDATE tb_usuario SET nome = ?, telefone = ? , "
+                + "tipo_usuario = ? WHERE id = ? ";
+        
+        PreparedStatement pstmt;
+            pstmt = null;
+            
+        try {
+            
+            pstmt = connection.prepareStatement(sql);
+           
+            pstmt.setString(1,usuario.getNome());
+            pstmt.setString(2,usuario.getEmail());
+            pstmt.setString(3,usuario.getTelefone());
+            pstmt.setString(4,usuario.getTipo_usuario());
+            
+            int linhaAfetadas = pstmt.executeUpdate();
+            
+            if (linhaAfetadas > 0) {
+                System.out.println("Leitura concluida");
+            } else {
+                System.out.println("Usuario não foi encontrado");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR: "+e.getMessage());
+        } finally {
+        }
     }
 }
