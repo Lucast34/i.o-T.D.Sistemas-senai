@@ -6,6 +6,7 @@ package biblioteca;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.Connection;
 
 /**
  *
@@ -54,38 +55,57 @@ public class Biblioteca {
 //            
 //        }
 
-        try {
-            
-            int idBucador =2;
-            
-            Usuario usuario = userDAO.bucasUsuarioPorId(idBucador);
-            
-            if(usuario!= null){
-                System.out.println("O usuario foi encontrado");
-            
-            
-                System.out.println("ID: "+usuario.getId());
-                System.out.println("Nome: "+usuario.getNome());
-                System.out.println("Email: "+usuario.getEmail());
-                System.out.println("Telefone: "+usuario.getTelefone());
-                System.out.println("Tipo: "+usuario.getTipo_usuario());
-                System.out.println("________________X_______________");
-            }
-            else{
-                System.out.println("O usuario não foi encontrado -> id:"+idBucador);
-            } 
-        }catch (SQLException e) {
-            System.out.println("Erro: "+e.getMessage());
-        }
+//        try {
+//            
+//            int idBucador =2;
+//            
+//            Usuario usuario = userDAO.bucasUsuarioPorId(idBucador);
+//            
+//            if(usuario!= null){
+//                System.out.println("O usuario foi encontrado");
+//            
+//            
+//                System.out.println("ID: "+usuario.getId());
+//                System.out.println("Nome: "+usuario.getNome());
+//                System.out.println("Email: "+usuario.getEmail());
+//                System.out.println("Telefone: "+usuario.getTelefone());
+//                System.out.println("Tipo: "+usuario.getTipo_usuario());
+//                System.out.println("________________X_______________");
+//            }
+//            else{
+//                System.out.println("O usuario não foi encontrado -> id:"+idBucador);
+//            } 
+//        }catch (SQLException e) {
+//            System.out.println("Erro: "+e.getMessage());
+//        }
+        
+        Connection connection = null;
         
         try {
+            connection = new ConnectionFactory().connectaBD();
             
-            int idBucador =2;
+            UsuarioDAO dao = new UsuarioDAO(connection);
             
-            Usuario usuario = userDAO.atualizarUsuario(usuario);
+            Usuario usrAtualizado = new Usuario();
             
+            usrAtualizado.setId(1);
+            usrAtualizado.setNome("Galiandra");
+            usrAtualizado.setEmail("galiandra@email.com");
+            usrAtualizado.setTelefone("61-988888");
+            usrAtualizado.setTipo_usuario("bicno");
             
-        } catch (Exception e) {
+            dao.atualizarUsuario(usrAtualizado);
+            
+        } catch (SQLException e) {
+            System.out.println("Erro: "+e.getMessage());
+        }finally{
+            try {
+                if(connection != null) connection.close();
+                
+            } catch (SQLException e) {
+                System.out.println("Erro: "+e.getMessage());
+            }
         }
+        
     }
 }

@@ -20,6 +20,10 @@ public class UsuarioDAO {
         this.connection = new ConnectionFactory().connectaBD();
     }
     
+    public UsuarioDAO(Connection connection) {
+        this.connection = new ConnectionFactory().connectaBD();
+    }
+    
     public void criarUsuario(Usuario usuario)throws SQLException{
         String sql = "INSERT INTO  tb_usuario(nome,email,telefone,tipo_usuario)"
                 + "values(?,?,?,?)";
