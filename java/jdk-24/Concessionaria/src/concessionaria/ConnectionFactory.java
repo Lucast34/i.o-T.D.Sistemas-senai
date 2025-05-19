@@ -14,7 +14,7 @@ public class ConnectionFactory {
         
         try {
             
-            String url = "jdbc:mysql://localhost:3306/db_cadastro?useSS1=false" ;
+            String url = "jdbc:mysql://localhost:3306/db_concessionaria?useSS1=false" ;
             String user = "root";
             String password = "";
             

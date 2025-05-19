@@ -4,25 +4,31 @@
  */
 package concessionaria;
 
-import java.util.Date;
 
 /**
  *
  * @author ead
  */
 public class Carro {
+    private int id;
     private String marca;
-    private boolean tipo;
-    private Date ano;
+    private String tipo;
+    private int ano;
     private int porta;
 
-    public Carro(String marca, boolean tipo, Date ano, int porta) {
-        this.marca = marca;
-        this.tipo = tipo;
-        this.ano = ano;
-        this.porta = porta;
+    public Carro() {
     }
 
+    
+    
+    public Carro(int id,String marca, int ano, String tipo, int porta) {
+        this.id = id ;
+        this.marca = marca;
+        this.ano = ano;
+        this.tipo = tipo;
+        this.porta = porta;
+    }
+    
     public String getMarca() {
         return marca;
     }
@@ -31,19 +37,19 @@ public class Carro {
         this.marca = marca;
     }
 
-    public boolean isTipo() {
+    public String getTipo() {
         return tipo;
-    }
+    } 
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public Date getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
@@ -54,6 +60,16 @@ public class Carro {
     public void setPorta(int porta) {
         this.porta = porta;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     
     
 }
