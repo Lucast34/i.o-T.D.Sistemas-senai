@@ -18,6 +18,17 @@ public class Filme {
         this.genero = genero;
         this.ano = ano;
     }
+    
+    public Filme(String titulo, String genero, String ano) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.ano = ano;
+    }
+
+    public Filme() {
+    }
+    
+    
 
     public int getId() {
         return id;
