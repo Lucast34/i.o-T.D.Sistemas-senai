@@ -121,4 +121,55 @@ public class FilmeDAO {
         return film;
     }
     
+    public void atualizarFilme(Filme filme)throws SQLException{
+        String sql = "UPDATE tb_filme SET titulo= ?, genero= ?, "
+                + "ano = ?, WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        try {
+            
+            pstm = connection.prepareCall(sql);
+            
+            pstm.setString(1, filme.getTitulo());
+            pstm.setString(2, filme.getGenero());
+            pstm.setInt(3, filme.getAno());
+            
+            int linhaAfetadas = pstm.executeUpdate();
+            
+            if(linhaAfetadas > 0){
+                System.out.println("Leitura concluida");
+            }else{
+                System.out.println("Usuario não foi encontrado");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        } finally{
+            if(pstm != null)pstm.close();
+        }
+        
+    }
+    
+    public void deletaFilme(int id) throws SQLException{
+        String sql = "DELETE FROM tb_carro WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        try {
+            pstm = connection.prepareStatement(sql);
+            
+            pstm.setInt(1,id);
+            
+            pstm.executeUpdate();
+            
+            System.out.println("Filme deletado com sucesso");
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        } finally {
+            if(pstm != null)pstm.close();
+        }
+    }
 }
