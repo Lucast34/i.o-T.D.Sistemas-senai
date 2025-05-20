@@ -64,12 +64,97 @@ public class CarroDAO {
             while (rs.next()) {
                 Carro car = new Carro();
                 
-                car.setId();
+                car.setId(rs.getInt("id"));
+                car.setMarca(rs.getString("Marca"));
+                car.setAno(rs.getInt("Ano"));
+                car.setTipo(rs.getString("Tipo"));
+                car.setPorta(rs.getInt("Porta"));
                 
+                list.add(car);
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Erro: "+e.getMessage());
         } finally {
+            if(rs!= null && pstm != null){
+                rs.close();
+                pstm.close();
+            }
+            
+        }
+        return list;
+    }
+    
+    public Carro buscaUsuarioPorId(int id) throws SQLException{
+        String sql = "SELECT * FROM tb_carro WHERE id=?";
+        
+        PreparedStatement pstm;
+                pstm = null;
+        
+        ResultSet rs = null;
+        
+        Carro car = null;
+        
+        try {
+            
+            pstm = connection.prepareStatement(sql);
+            
+            pstm.setInt(1, id);
+            
+            rs = pstm.executeQuery();
+            
+            if (rs.next()) {
+                
+                car = new Carro();
+                
+                car.setId(rs.getInt("id"));
+                car.setMarca(rs.getString("marca"));
+                car.setAno(rs.getInt("ano"));
+                car.setTipo(rs.getString("tipo"));
+                car.setAno(rs.getInt("ano"));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+            
+        } finally {
+            if(rs != null && pstm != null){
+                rs.close();
+                pstm.close();
+            }
+        }
+        
+        return car;
+    }
+    
+    public void atualizarUsuario(Carro car)throws SQLException{
+        String sql = "UPDATE tb_usuario SET marca = ?, ano = ?, "
+                + "tipo = ?, portas = ? WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        try {
+            
+            pstm = connection.prepareCall(sql);
+            
+            pstm.setString(1, car.getMarca());
+            pstm.setInt(2, car.getAno());
+            pstm.setString(3, car.getTipo());
+            pstm.setInt(4, car.getPorta());
+            
+            int linhaAfetadas = pstm.executeUpdate();
+            
+            if(linhaAfetadas > 0){
+                System.out.println("Leitura concluida");
+            }else{
+                System.out.println("Usuario não foi encontrado");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        } finally{
+            if(pstm != null)pstm.close();
         }
     }
 }

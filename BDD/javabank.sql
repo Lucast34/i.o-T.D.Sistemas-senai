@@ -22,3 +22,12 @@ create table if not exists tb_usuario(
 )auto_increment=1;
 
 select * from tb_usuario;
+
+
+create table if not exists tb_padaria(
+	id int auto_increment primary key,
+    nome varchar(100),
+    email varchar(100),
+    telefone varchar(20)
+
+)auto_increment=1;

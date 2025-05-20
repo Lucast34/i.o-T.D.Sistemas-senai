@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package biblioteca;
-
+package paodamanha;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -12,21 +11,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class UsuarioDAO {
+public class PadariaDAO {
+    
     private Connection connection;
     
-    public UsuarioDAO() {
+    public PadariaDAO() {
         this.connection = new ConnectionFactory().connectaBD();
     }
     
-    public UsuarioDAO(Connection connection) {
+    public PadariaDAO(Connection connection) {
         this.connection = new ConnectionFactory().connectaBD();
     }
     
-    public void criarUsuario(Usuario usuario)throws SQLException{
-        String sql = "INSERT INTO  tb_usuario(nome,email,telefone,tipo_usuario)"
-                + "values(?,?,?,?)";
+    public void criarPadaria(Padaria padaria)throws SQLException{
+        String sql = "INSERT INTO  tb_adaria(nome,email,telefone)"
+                + "values(?,?,?)";
         
         PreparedStatement pstmt;
             pstmt = null;
@@ -35,10 +34,10 @@ public class UsuarioDAO {
             
             pstmt = connection.prepareStatement(sql);
            
-            pstmt.setString(1,usuario.getNome());
-            pstmt.setString(2,usuario.getEmail());
-            pstmt.setString(3,usuario.getTelefone());
-            pstmt.setString(4,usuario.getTipo_usuario());
+            pstmt.setString(1,padaria.getNome());
+            pstmt.setString(2,padaria.getEmail());
+            pstmt.setString(3,padaria.getTelefone());
+
             
             pstmt.executeUpdate();
             
@@ -54,11 +53,11 @@ public class UsuarioDAO {
         }
         
     }
-    public List<Usuario> listarUsuarios() throws SQLException{
+    public List<Padaria> listarPadarias() throws SQLException{
         
-        List<Usuario> lista = new ArrayList<>();
+        List<Padaria> lista = new ArrayList<>();
         
-        String sql = "SELECT * FROM tb_usuario";
+        String sql = "SELECT * FROM tb_padaria";
         
         PreparedStatement pstm;
             pstm = null;
@@ -71,15 +70,15 @@ public class UsuarioDAO {
             rs = pstm.executeQuery();
             
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                Padaria padaria = new Padaria();
                 
-                usuario.setId(rs.getInt("id"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setTelefone(rs.getString("telefone"));
-                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
+                padaria.setId(rs.getInt("id"));
+                padaria.setNome(rs.getString("nome"));
+                padaria.setEmail(rs.getString("email"));
+                padaria.setTelefone(rs.getString("telefone"));
                 
-                lista.add(usuario);
+                
+                lista.add(padaria);
                 
             }
             
@@ -95,14 +94,14 @@ public class UsuarioDAO {
         return lista;
        
     }
-    public Usuario bucasUsuarioPorId(int id) throws SQLException{
-        String sql = "SELECT * FROM tb_usuario WHERE id=?";
+    public Padaria bucasPadariaPorId(int id) throws SQLException{
+        String sql = "SELECT * FROM tb_padaria WHERE id=?";
         
         PreparedStatement pstm;
             pstm = null;
           
         ResultSet rs = null;
-        Usuario usuario = null;
+        Padaria padaria = null;
         
         try {
             pstm = connection.prepareStatement(sql);
@@ -110,13 +109,13 @@ public class UsuarioDAO {
             rs = pstm.executeQuery();
             
             if (rs.next()){
-                usuario = new Usuario();
+                padaria = new Padaria();
                 
-                usuario.setId(rs.getInt("id"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setTelefone(rs.getString("telefone"));
-                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
+                padaria.setId(rs.getInt("id"));
+                padaria.setNome(rs.getString("nome"));
+                padaria.setEmail(rs.getString("email"));
+                padaria.setTelefone(rs.getString("telefone"));
+                
             }
             
         } catch (SQLException e) {
@@ -127,12 +126,12 @@ public class UsuarioDAO {
                 pstm.close();
             }    
         }
-        return usuario;
+        return padaria;
         
     }
-    public void atualizarUsuario(Usuario usuario) throws SQLException{
-        String sql = "UPDATE tb_usuario SET nome = ?, telefone = ? , "
-                + "tipo_usuario = ? WHERE id = ? ";
+    public void atualizarPadaria(Padaria padaria) throws SQLException{
+        String sql = "UPDATE tb_padaria SET nome = ?, email = ? , "
+                + "telefone= ? WHERE id = ? ";
         
         PreparedStatement pstmt;
             pstmt = null;
@@ -141,17 +140,17 @@ public class UsuarioDAO {
             
             pstmt = connection.prepareStatement(sql);
            
-            pstmt.setString(1,usuario.getNome());
-            pstmt.setString(2,usuario.getEmail());
-            pstmt.setString(3,usuario.getTelefone());
-            pstmt.setString(4,usuario.getTipo_usuario());
+            pstmt.setString(1,padaria.getNome());
+            pstmt.setString(2,padaria.getEmail());
+            pstmt.setString(3,padaria.getTelefone());
+          
             
             int linhaAfetadas = pstmt.executeUpdate();
             
             if (linhaAfetadas > 0) {
                 System.out.println("Leitura concluida");
             } else {
-                System.out.println("Usuario não foi encontrado");
+                System.out.println("Padaria não foi encontrado");
             }
             
         } catch (SQLException e) {
@@ -162,8 +161,8 @@ public class UsuarioDAO {
         }
     }
     
-    public void deleteUsuario(int id) throws SQLException{
-        String sql = "DELETE FROM tb_usuario WHERE id = ?";
+    public void deletePadaria(int id) throws SQLException{
+        String sql = "DELETE FROM tb_padaria WHERE id = ?";
         
         PreparedStatement pstm;
             pstm = null;
@@ -175,7 +174,7 @@ public class UsuarioDAO {
             
             pstm.executeUpdate();
             
-            System.out.println("Usuario deletado com sucesso");
+            System.out.println("Padaria deletado com sucesso");
         } catch (SQLException e) {
             System.out.println("Error: "+e.getMessage());
         } finally {
@@ -183,4 +182,5 @@ public class UsuarioDAO {
         }
         
     }
+    
 }

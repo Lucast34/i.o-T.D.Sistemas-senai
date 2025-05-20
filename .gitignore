@@ -2,6 +2,7 @@
 /java/i.o-T.d/target/
 /java/Iot-td/target/
 /java/Lucas1/target/
+/java/jdk-21/Biblioteca/nbproject/private/
 /java/jdk-24/Heranca/target/
 /java/jdk-24/Sobreposicao/target/
 /java/jdk-24/Interfasse/target/
@@ -13,4 +14,4 @@
 /java/jdk-24/Concessionaria/nbproject/private/
 /java/jdk-24/Concessionaria/build/
 /java/jdk-24/Cinema/nbproject/private/
-/java/jdk-21/Biblioteca/nbproject/private/
+/java/jdk-24/PaoDaManha/nbproject/private/
