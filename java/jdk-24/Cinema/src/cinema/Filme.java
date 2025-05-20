@@ -10,16 +10,17 @@ package cinema;
  */
 public class Filme {
     private int id;
-    private String titulo,genero,ano;
+    private String titulo,genero;
+    private int ano;
 
-    public Filme(int id, String titulo, String genero, String ano) {
+    public Filme(int id, String titulo, String genero, int ano) {
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.ano = ano;
     }
     
-    public Filme(String titulo, String genero, String ano) {
+    public Filme(String titulo, String genero, int ano) {
         this.titulo = titulo;
         this.genero = genero;
         this.ano = ano;
@@ -54,11 +55,11 @@ public class Filme {
         this.genero = genero;
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
     
