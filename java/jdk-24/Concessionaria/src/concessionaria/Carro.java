@@ -19,7 +19,13 @@ public class Carro {
     public Carro() {
     }
 
-    
+    public Carro(String marca, int ano, String tipo, int porta){
+        this.marca = marca;
+        this.ano = ano;
+        this.tipo = tipo;
+        this.porta = porta;
+        
+    }
     
     public Carro(int id,String marca, int ano, String tipo, int porta) {
         this.id = id ;
