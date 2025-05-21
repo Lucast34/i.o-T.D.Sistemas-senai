@@ -12,7 +12,7 @@ public class PaoDaManha {
 
     public static void main(String[] args) {
         
-        PadariaDAO paDAO = new PadariaDAO();
+        PadariaDAO paDAO = new PadariaD 'AO();
         
         Padaria pad = new Padaria(nome, email, telefone);
         
