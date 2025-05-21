@@ -157,5 +157,27 @@ public class CarroDAO {
             if(pstm != null)pstm.close();
         }
     }
+    
+    public void deletarCarro(int id) throws SQLException{
+        String sql = "DELETE FROM tb_carro WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        try {
+            pstm = connection.prepareStatement(sql);
+            
+            pstm.setInt(1,id);
+            
+            pstm.executeUpdate();
+            
+            System.out.println("Carro deletado com sucesso");
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        } finally {
+            if(pstm != null)pstm.close();
+        }
+    
+    }
 }
 
