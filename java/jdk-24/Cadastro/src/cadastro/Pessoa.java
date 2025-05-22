@@ -14,11 +14,18 @@ public abstract class Pessoa {
     private String sexo;
     private String cpf;
 
+    // Cheio
+    
     public Pessoa(String nome, String endereco, String sexo, String cpf) {
         this.nome = nome;
         this.endereco = endereco;
         this.sexo = sexo;
         this.cpf = cpf;
+    }
+    
+    // Vazio
+    public Pessoa(){
+        
     }
 
     public String getNome() {

@@ -22,7 +22,7 @@ public class AlunoDAO {
         this.connection = new ConnectionFactory().connectaBD();
     }
     
-    public void criarCarro(Aluno aluno) throws SQLException{
+    public void criarAlunoro(Aluno aluno) throws SQLException{
         String sql= "INSERT INTO tb_aluno(nome, endereco, "
                 + "sexo, cpf, matricula, curso)"
                 + "values(?,?,?,?)";
@@ -52,11 +52,11 @@ public class AlunoDAO {
     }
         
         
-    public List<Carro> listarCarros() throws SQLException{
+    public List<Aluno> listarAlunoros() throws SQLException{
         
-        List<Carro> list = new ArrayList<>();
+        List<Aluno> list = new ArrayList<>();
         
-        String sql = "SELECT * FROM tb_carro";
+        String sql = "SELECT * FROM tb_aluno";
         
         PreparedStatement pstm;
             pstm = null;
@@ -69,15 +69,15 @@ public class AlunoDAO {
             rs = pstm.executeQuery();
             
             while (rs.next()) {
-                Carro car = new Carro();
+                Aluno aluno = new Aluno();
                 
-                car.setId(rs.getInt("id"));
-                car.setMarca(rs.getString("Marca"));
-                car.setAno(rs.getInt("Ano"));
-                car.setTipo(rs.getString("Tipo"));
-                car.setPorta(rs.getInt("Porta"));
+                aluno.getId(rs.getInt("id"));   
+                aluno.setMarca(rs.getString("Marca"));
+                aluno.setAno(rs.getInt("Ano"));
+                aluno.setTipo(rs.getString("Tipo"));
+                aluno.setPorta(rs.getInt("Porta"));
                 
-                list.add(car);
+                list.add(Aluno);
             }
             
         } catch (SQLException e) {
@@ -92,15 +92,15 @@ public class AlunoDAO {
         return list;
     }
     
-    public Carro buscaUsuarioPorId(int id) throws SQLException{
-        String sql = "SELECT * FROM tb_carro WHERE id=?";
+    public Aluno buscaAlunoPorId(int id) throws SQLException{
+        String sql = "SELECT * FROM tb_Alunoro WHERE id=?";
         
         PreparedStatement pstm;
                 pstm = null;
         
         ResultSet rs = null;
         
-        Carro car = null;
+        Aluno Aluno = null;
         
         try {
             
@@ -112,13 +112,13 @@ public class AlunoDAO {
             
             if (rs.next()) {
                 
-                car = new Carro();
+                Aluno = new Aluno();
                 
-                car.setId(rs.getInt("id"));
-                car.setMarca(rs.getString("marca"));
-                car.setAno(rs.getInt("ano"));
-                car.setTipo(rs.getString("tipo"));
-                car.setAno(rs.getInt("ano"));
+                Aluno.setId(rs.getInt("id"));
+                Aluno.setMarca(rs.getString("marca"));
+                Aluno.setAno(rs.getInt("ano"));
+                Aluno.setTipo(rs.getString("tipo"));
+                Aluno.setAno(rs.getInt("ano"));
             }
             
         } catch (SQLException e) {
@@ -131,12 +131,12 @@ public class AlunoDAO {
             }
         }
         
-        return car;
+        return Aluno;
     }
     
-    public void atualizarUsuario(Carro car)throws SQLException{
-        String sql = "UPDATE tb_usuario SET marca = ?, ano = ?, "
-                + "tipo = ?, portas = ? WHERE id = ?";
+    public void atualizarAluno(Aluno aluno)throws SQLException{
+        String sql = "UPDATE tb_aluno SET nome = ?,  endereco = ?, "
+                + "sexo= ?, cpf= ?, matricula= ?, curso= ? WHERE id = ?";
         
         PreparedStatement pstm;
             pstm = null;
@@ -145,17 +145,19 @@ public class AlunoDAO {
             
             pstm = connection.prepareCall(sql);
             
-            pstm.setString(1, car.getMarca());
-            pstm.setInt(2, car.getAno());
-            pstm.setString(3, car.getTipo());
-            pstm.setInt(4, car.getPorta());
+            pstm.setString(1,aluno.getNome());
+            pstm.setString(2,aluno.getEndereco());
+            pstm.setString(3,aluno.getSexo());
+            pstm.setString(4,aluno.getCpf());
+            pstm.setString(4,aluno.getMatricula());
+            pstm.setString(4,aluno.getCurso());
             
             int linhaAfetadas = pstm.executeUpdate();
             
             if(linhaAfetadas > 0){
                 System.out.println("Leitura concluida");
             }else{
-                System.out.println("Usuario não foi encontrado");
+                System.out.println("Aluno não foi encontrado");
             }
             
         } catch (SQLException e) {
@@ -165,8 +167,8 @@ public class AlunoDAO {
         }
     }
     
-    public void deletarCarro(int id) throws SQLException{
-        String sql = "DELETE FROM tb_carro WHERE id = ?";
+    public void deletarAluno(int id) throws SQLException{
+        String sql = "DELETE FROM tb_Aluno WHERE id = ?";
         
         PreparedStatement pstm;
             pstm = null;
@@ -178,7 +180,7 @@ public class AlunoDAO {
             
             pstm.executeUpdate();
             
-            System.out.println("Carro deletado com sucesso");
+            System.out.println("Aluno deletado com sucesso");
         } catch (SQLException e) {
             System.out.println("Error: "+e.getMessage());
         } finally {
@@ -186,6 +188,8 @@ public class AlunoDAO {
         }
     
     }
+    
+    
     
     
 }
