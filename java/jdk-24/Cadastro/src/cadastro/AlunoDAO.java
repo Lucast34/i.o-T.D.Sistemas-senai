@@ -25,7 +25,7 @@ public class AlunoDAO {
     public void criarAlunoro(Aluno aluno) throws SQLException{
         String sql= "INSERT INTO tb_aluno(nome, endereco, "
                 + "sexo, cpf, matricula, curso)"
-                + "values(?,?,?,?)";
+                + "values(?,?,?,?,?,?)";
         
         PreparedStatement pstm;
             pstm = null;
@@ -71,13 +71,15 @@ public class AlunoDAO {
             while (rs.next()) {
                 Aluno aluno = new Aluno();
                 
-                aluno.getId(rs.getInt("id"));   
-                aluno.setMarca(rs.getString("Marca"));
-                aluno.setAno(rs.getInt("Ano"));
-                aluno.setTipo(rs.getString("Tipo"));
-                aluno.setPorta(rs.getInt("Porta"));
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setSexo(rs.getString("sexo"));
+                aluno.setCpf(rs.getString("cpf"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setCurso(rs.getString("curso"));
                 
-                list.add(Aluno);
+                list.add(aluno);
             }
             
         } catch (SQLException e) {
@@ -100,7 +102,7 @@ public class AlunoDAO {
         
         ResultSet rs = null;
         
-        Aluno Aluno = null;
+        Aluno aluno = null;
         
         try {
             
@@ -112,13 +114,15 @@ public class AlunoDAO {
             
             if (rs.next()) {
                 
-                Aluno = new Aluno();
+                aluno = new Aluno();
                 
-                Aluno.setId(rs.getInt("id"));
-                Aluno.setMarca(rs.getString("marca"));
-                Aluno.setAno(rs.getInt("ano"));
-                Aluno.setTipo(rs.getString("tipo"));
-                Aluno.setAno(rs.getInt("ano"));
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setSexo(rs.getString("sexo"));
+                aluno.setCpf(rs.getString("cpf"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setCurso(rs.getString("curso"));
             }
             
         } catch (SQLException e) {
@@ -131,7 +135,7 @@ public class AlunoDAO {
             }
         }
         
-        return Aluno;
+        return aluno;
     }
     
     public void atualizarAluno(Aluno aluno)throws SQLException{
