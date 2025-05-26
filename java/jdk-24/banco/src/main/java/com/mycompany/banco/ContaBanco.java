@@ -94,16 +94,19 @@ public class ContaBanco {
     public void sacar(){
         System.out.println("Sacar");
         
-        Scanner input = new Scanner(System.in);
-        
-        int esc = input.nextInt();
-        
-        switch(esc) {
-            case 1:
-                System.out.println("Sacou");
-                break;
-            default:
-                throw new AssertionError();
+        try (Scanner input = new Scanner(System.in)) {
+            int esc = input.nextInt();
+            
+            switch(esc) {
+                case 1:
+                    System.out.println("Sacou");
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } catch (AssertionError e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
     

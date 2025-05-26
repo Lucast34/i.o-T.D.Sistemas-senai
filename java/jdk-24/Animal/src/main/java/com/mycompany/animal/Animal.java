@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.animal;
 
-/**
- *
- * @author ead
- */
 public class Animal {
     private double peso;
     private int idade;

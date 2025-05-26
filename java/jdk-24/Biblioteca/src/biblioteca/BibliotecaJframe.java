@@ -7,8 +7,10 @@ package biblioteca;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger;
 import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class BibliotecaJframe extends javax.swing.JFrame {
 
@@ -138,30 +140,45 @@ public class BibliotecaJframe extends javax.swing.JFrame {
     private void txtTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoUsuarioActionPerformed
-
+    
+    private final UsuarioDAO usuarioDao = new UsuarioDAO();
+    
     private void JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonActionPerformed
-        // TODO add your handling code here:
-        int id = 0;
-        String nome,email,telefone,tipo;
         
-        nome = txtNome.getText();
-        email = txtEmail.getText();
-        telefone= txtTelefone.getText();
-        tipo= txtTipoUsuario.getText();
+        String nome = txtNome.getText().trim();
+        String email = txtEmail.getText().trim();
+        String telefone = txtTelefone.getText().trim();
+        String tipoUsuario = txtTipoUsuario.getText().trim();
         
-        UsuarioDAO usrDao = new UsuarioDAO();
+        if(nome.isEmpty() || email.isEmpty() || telefone.isEmpty() || 
+                tipoUsuario.isEmpty()){
+            
+            JOptionPane.showMessageDialog(this, 
+                    "Preencha todos os campos antes de salvar",
+                    "Campos obrigatórios",JOptionPane.WARNING_MESSAGE);
+            
+            return;
+        }
         
-        Usuario usr = new Usuario(id, nome, email, telefone, tipo);
+        Usuario usuario = new Usuario(0, nome, email, telefone, tipoUsuario);
         
         try {
-            usrDao.criarUsuario(usr);
-            txtResultado.setText("O usuario foi adicionado");
-            //javax.swing.JTextField.
-                
+            usuarioDao.criarUsuario(usuario);
+            JOptionPane.showMessageDialog(this, "Usuário salvo com sucesso!"
+                    ,"Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException ex) {
+            
+//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, 
+//                    "Erro ao salvar usúario",ex);
+            
+            JOptionPane.showMessageDialog(this, 
+                    "Não fois possível salvar o usúario.","Detalhes: "
+                            +ex.getMessage(),JOptionPane.INFORMATION_MESSAGE);
             
             
-        } catch (SQLException e) {
-             txtResultado.setText(e.getMessage());
+            
         }
         
     }//GEN-LAST:event_JButtonActionPerformed
