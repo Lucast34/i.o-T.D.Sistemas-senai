@@ -6,6 +6,9 @@ package biblioteca21;
 
 import java.sql.SQLException;
 
+
+private final class userDAO
+
 public class Biblioteca21 {
 
     /**

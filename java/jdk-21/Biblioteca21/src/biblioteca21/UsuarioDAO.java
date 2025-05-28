@@ -72,14 +72,18 @@ public class UsuarioDAO {
                 usuario.setId(rs.getInt("id"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
-                usuario.setId(rs.getInt("id"));
-                usuario.setId(rs.getInt("id"));
-                usuario.setId(rs.getInt("id"));
-                usuario.setId(rs.getInt("id"));
+                usuario.setId(rs.getInt("telefone"));
+                usuario.setId(rs.getInt("tipo_usuario"));
+                
+                lista.add(usuario);
             
             }
         } catch (Exception e) {
+            System.out.println("Error:"+e.getMessage());
+            
         } finally {
+            if(rs != null)rs.close();
+            if(pstm != null)pstm.close();
         }
         
         return lista;
