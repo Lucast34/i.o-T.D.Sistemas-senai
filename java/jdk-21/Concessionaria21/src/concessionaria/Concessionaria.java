@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package javaswing;
+package concessionaria;
 
-
-
-
-
-
-public class JavaSwing {
+/**
+ *
+ * @author luy
+ */
+public class Concessionaria {
 
     /**
      * @param args the command line arguments
