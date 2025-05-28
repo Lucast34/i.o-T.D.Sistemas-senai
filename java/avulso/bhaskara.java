@@ -1,11 +1,7 @@
-package com.mycompany.lucas;
 
 import java.io.PrintStream;
 import java.util.Scanner;
-/**
- *
- * @author Lucas
- */
+
 public class Bhaskara {
 
     public static void main(String[] args) {
