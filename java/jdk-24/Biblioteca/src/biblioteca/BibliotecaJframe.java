@@ -316,9 +316,10 @@ public class BibliotecaJframe extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tabelMostrar.getModel();
             model.setRowCount(0);
         
-        String id = txtID.getText();
+        String valor =  JOptionPane.showInputDialog("insira um valor");
+        //String id = txtID.getText();
         
-        int idBuscador = Integer.parseInt(id);
+        int idBuscador = Integer.parseInt(valor);
         
         try{
         
@@ -345,9 +346,21 @@ public class BibliotecaJframe extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
+        
         String id = txtID.getText();
         
         int idBuscador = Integer.parseInt(id);
+        
+        try{
+            
+            usuarioDao.deleteUsuario(idBuscador);
+            JOptionPane.showMessageDialog(this, "Deleto com sucesso!","Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "Error ao Deletar: "
+                    +e.getMessage(),"Error",JOptionPane.ERROR);
+        }
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -357,6 +370,9 @@ public class BibliotecaJframe extends javax.swing.JFrame {
         JUpdate update = new JUpdate();
         
         update.setVisible(true);
+        
+        
+        
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
