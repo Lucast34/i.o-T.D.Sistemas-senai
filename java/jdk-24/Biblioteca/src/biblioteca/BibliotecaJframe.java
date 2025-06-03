@@ -367,11 +367,31 @@ public class BibliotecaJframe extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        JUpdate update = new JUpdate();
-        
-        update.setVisible(true);
-        
-        
+        try {
+            
+            String valorid = JOptionPane.showInputDialog(this,"Digite um id "
+                    + "valido de usuario:");
+            
+            if(valorid == null || valorid.trim().isEmpty()) return;
+            
+            int id = Integer.getInteger(valorid);
+            
+            Usuario usuario = usuarioDao.bucasUsuarioPorId(id);
+            
+            if(usuario != null){
+                EditarUsuarioDialog dialog = new EditarUsuarioDialog(this, usuario, usuarioDao);
+                dialog.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Usuario com id" + id 
+                        + "não encontrado");
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID inválido. Digite um número valido");
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(this,"Error ao buscar usuário:\n"
+                    +e.getMessage());
+        }
         
         
     }//GEN-LAST:event_jButton4ActionPerformed
