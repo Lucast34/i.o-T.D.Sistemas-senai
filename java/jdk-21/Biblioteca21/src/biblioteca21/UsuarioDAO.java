@@ -78,7 +78,7 @@ public class UsuarioDAO {
                 lista.add(usuario);
             
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error:"+e.getMessage());
             
         } finally {
@@ -87,6 +87,49 @@ public class UsuarioDAO {
         }
         
         return lista;
+    }
+    
+    public Usuario buscarUsuarioPorId(int id) throws SQLException{
+        List<Usuario> lista = new ArrayList<>();
+        
+        String sql = "SELECT * FROM tb_usuario WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        ResultSet rs = null;
+        
+        Usuario usuario = null;
+        
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            
+            pstm.setInt(1, id);
+            
+            rs= pstm.executeQuery();
+            
+            if(rs.next()){
+                usuario = new Usuario();
+                
+                usuario.setId(rs.getInt("Id"));
+                usuario.setNome((rs.getString("Nome")));
+                usuario.setEmail((rs.getString("Email")));
+                usuario.setTelefone((rs.getString("Telefone")));
+                usuario.setTipo_usuario((rs.getString("Tipo_usuario")));
+                
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error: "+e.getMessage());
+        }finally{
+            if(rs != null && pstm != null){
+                rs.close();
+                pstm.close();
+            }
+        }
+        return usuario;
+        
     }
     
 }
