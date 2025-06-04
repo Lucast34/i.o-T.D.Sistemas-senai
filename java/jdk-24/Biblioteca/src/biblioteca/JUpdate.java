@@ -122,7 +122,7 @@ public class JUpdate extends javax.swing.JFrame {
             
         }
         catch(Exception e){
-            System.out.println("");
+            System.out.println(""); 
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

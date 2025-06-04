@@ -131,7 +131,7 @@ public class UsuarioDAO {
         
     }
     public void atualizarUsuario(Usuario usuario) throws SQLException{
-        String sql = "UPDATE tb_usuario SET nome = ?, telefone = ? , "
+        String sql = "UPDATE tb_usuario SET nome = ?, email = ?,telefone = ? , "
                 + "tipo_usuario = ? WHERE id = ? ";
         
         PreparedStatement pstmt;
@@ -145,6 +145,7 @@ public class UsuarioDAO {
             pstmt.setString(2,usuario.getEmail());
             pstmt.setString(3,usuario.getTelefone());
             pstmt.setString(4,usuario.getTipo_usuario());
+            pstmt.setInt(5, usuario.getId());
             
             int linhaAfetadas = pstmt.executeUpdate();
             
