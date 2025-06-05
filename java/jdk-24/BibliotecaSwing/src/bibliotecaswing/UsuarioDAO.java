@@ -9,6 +9,6 @@ import java.sql.Connection;
 public class UsuarioDAO {
     private Connection connection;
     
-    public Usuario
+    public UsuarioDAO
     
 }
