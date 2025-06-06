@@ -68,7 +68,7 @@ public class CarroDAO {
                 car.setMarca(rs.getString("Marca"));
                 car.setAno(rs.getInt("Ano"));
                 car.setTipo(rs.getString("Tipo"));
-                car.setPorta(rs.getInt("Porta"));
+                car.setPorta(rs.getInt("Portas"));
                 
                 list.add(car);
             }
@@ -111,7 +111,7 @@ public class CarroDAO {
                 car.setMarca(rs.getString("marca"));
                 car.setAno(rs.getInt("ano"));
                 car.setTipo(rs.getString("tipo"));
-                car.setAno(rs.getInt("ano"));
+                car.setPorta(rs.getInt("Portas"));
             }
             
         } catch (SQLException e) {

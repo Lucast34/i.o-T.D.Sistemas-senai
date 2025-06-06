@@ -4,6 +4,9 @@
  */
 package concessionaria;
 
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
+
 /**
  *
  * @author ead
@@ -120,11 +123,41 @@ public class JframeConcessionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private final CarroDAO carroDAO = new CarroDAO();
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
         String marca = txtMarca.getText().trim();
+        String ano = txtAno.getText().trim();
+        String tipo = txtTipo.getText().trim();
+        String porta = txtPortas.getText().trim();
+        
+        int intAno = Integer.parseInt(ano);
+        int intPorta = Integer.parseInt(porta);
+        
+        if(marca.isEmpty() || ano.isEmpty() || tipo.isEmpty() || porta.isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Preencha todos os campos antes de salvar",
+                    "Campos obrigatórios",JOptionPane.WARNING_MESSAGE);
+            
+            return;
+        }
+        
+        
+        Carro carro = new Carro(marca, intAno, tipo, intPorta);
+        
+        try {
+            
+            carroDAO.criarCarro(carro);
+            JOptionPane.showMessageDialog(this, "Carro salvo com sucesso!",
+                    "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,"Não foi possivel salvar o usúario",
+                    "Detalhes:"+e.getMessage(),JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

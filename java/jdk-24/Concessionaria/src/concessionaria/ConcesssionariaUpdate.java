@@ -4,6 +4,12 @@
  */
 package concessionaria;
 
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author ead
@@ -41,7 +47,7 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Marca", "Ano", "Tipo", "Porta"
             }
         ));
         jScrollPane1.setViewportView(tabelMostrar);
@@ -88,9 +94,28 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private final CarroDAO carroDAO = new CarroDAO();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            DefaultTableModel model = (DefaultTableModel) tabelMostrar.getModel();
+            model.setRowCount(0);
+            
+            List<Carro> carros = carroDAO.listarCarros();
+            
+            for(Carro c : carros){
+                model.addRow(new Object[]{
+                    c.getMarca(),
+                    c.getAno(),
+                    c.getTipo(),
+                    c.getPorta()
+                });
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao buscar os dados:"+e.getMessage()
+            ,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
