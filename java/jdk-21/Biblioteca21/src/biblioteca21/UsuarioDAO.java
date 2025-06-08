@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.mariadb.jdbc.client.result.ResultSetMetaData;
+//import org.mariadb.jdbc.client.result.ResultSetMetaData;
 
 public class UsuarioDAO {
     private Connection connection;
@@ -89,9 +89,7 @@ public class UsuarioDAO {
         return lista;
     }
     
-    public Usuario buscarUsuarioPorId(int id) throws SQLException{
-        List<Usuario> lista = new ArrayList<>();
-        
+    public Usuario buscarUsuarioPorId(int id) throws SQLException{ 
         String sql = "SELECT * FROM tb_usuario WHERE id = ?";
         
         PreparedStatement pstm;
@@ -128,8 +126,61 @@ public class UsuarioDAO {
                 pstm.close();
             }
         }
-        return usuario;
+        return usuario;   
+    }
+    
+    public void atualizarUsuario(Usuario usuario)throws SQLException{
+        String sql = "UPDATE tb_usuario SET nome = ?, telefone = ?, "
+                + "tipo_usuario = ? WHERE id = ?"; 
         
+        PreparedStatement pstmt;
+        pstmt = null;
+        
+        try {
+            pstmt = connection.prepareStatement(sql);
+            
+            pstmt.setString(1, usuario.getNome());
+            pstmt.setString(2, usuario.getEmail());
+            pstmt.setString(1, usuario.getTelefone());
+            pstmt.setString(1, usuario.getTipo_usuario());
+            
+            int linhaAfetadas = pstmt.executeUpdate();
+            
+            if (linhaAfetadas > 0){
+                System.out.println("Leitura concluída");
+            }else{
+                System.out.println("Usuario não foi encontrado");
+            }
+            
+        }catch (SQLException e) {
+            System.out.println("ERROR:"+e.getMessage());
+        }finally{
+            if(pstmt != null)pstmt.close();
+        }
+        
+    }
+    
+    public void deleteUsuario(int id)throws SQLException{
+        String sql = "Delete from tb_usuario WHERE id = ?";
+        
+        PreparedStatement pstm;
+            pstm = null;
+            
+        try {
+            pstm = connection.prepareStatement(sql);
+            
+            pstm.setInt(1,id);
+            
+            pstm.executeUpdate();
+            
+            System.out.println("Usuario deletado com sucessp");
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR: "+e.getMessage());
+            
+        } finally {
+            if(pstm != null) pstm.close();
+        }
     }
     
 }
