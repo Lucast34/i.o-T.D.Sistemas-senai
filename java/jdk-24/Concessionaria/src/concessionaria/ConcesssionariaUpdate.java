@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import javax.swing.JTable;
 
 
 /**
@@ -97,29 +98,43 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
     
     private final CarroDAO carroDAO = new CarroDAO();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            DefaultTableModel model = (DefaultTableModel) tabelMostrar.getModel();
-            model.setRowCount(0);
-            
-            List<Carro> carros = carroDAO.listarCarros();
-            
-            for(Carro c : carros){
-                model.addRow(new Object[]{
-                    c.getMarca(),
-                    c.getAno(),
-                    c.getTipo(),
-                    c.getPorta()
-                });
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao buscar os dados:"+e.getMessage()
-            ,"ERROR",JOptionPane.ERROR_MESSAGE);
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public JTable getTabelMostrar() {
+        return tabelMostrar;
+    }
+
+    public void setTabelMostrar(JTable tabelMostrar) {
+        this.tabelMostrar = tabelMostrar;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        ConcessionariaListUpdate list = new ConcessionariaListUpdate();
+        list.setVisible(true);
+        
+        int selectRow = tabelMostrar.getSelectedRow();
+        
+        try {
+            if (selectRow == -1) {
+                JOptionPane.showMessageDialog(this, "Selecione uma linha",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+            } else {
+                String Smarca = tabelMostrar.getValueAt(selectRow,0).toString();
+                list.getTxtMarca().setText(Smarca);
+                
+                String Sano = tabelMostrar.getValueAt(selectRow,1).toString();
+                list.getTxtAno().setText(Sano);
+                
+                String Stipo = tabelMostrar.getValueAt(selectRow,2).toString();
+                list.getTxtTipo().setText(Stipo);
+                
+                String Sporta = tabelMostrar.getValueAt(selectRow,3).toString();
+                list.getTxtPorta().setText(Sporta);
+                
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

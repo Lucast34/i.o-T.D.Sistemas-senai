@@ -6,6 +6,8 @@ package concessionaria;
 
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -164,6 +166,30 @@ public class JframeConcessionario extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConcesssionariaUpdate Update = new ConcesssionariaUpdate();
         Update.setVisible(true);
+        
+        try {
+            DefaultTableModel model = (DefaultTableModel) 
+                    Update.getTabelMostrar().getModel();
+            model.setRowCount(0);
+            
+            List<Carro> carros = carroDAO.listarCarros();
+            
+            for(Carro c : carros){
+                model.addRow(new Object[]{
+                    c.getMarca(),
+                    c.getAno(),
+                    c.getTipo(),
+                    c.getPorta()
+                });
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao buscar os dados:"+e.getMessage()
+            ,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
