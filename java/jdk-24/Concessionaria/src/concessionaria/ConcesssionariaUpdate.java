@@ -60,7 +60,7 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Listar");
+        jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -97,10 +97,6 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private final CarroDAO carroDAO = new CarroDAO();
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     public JTable getTabelMostrar() {
         return tabelMostrar;
     }
@@ -110,16 +106,17 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ConcessionariaListUpdate list = new ConcessionariaListUpdate();
-        list.setVisible(true);
         
-        int selectRow = tabelMostrar.getSelectedRow();
-        
+        int selectRow = tabelMostrar.getSelectedRow();        
+       
         try {
             if (selectRow == -1) {
                 JOptionPane.showMessageDialog(this, "Selecione uma linha",
                         "Error",JOptionPane.ERROR_MESSAGE);
             } else {
+                ConcessionariaListUpdate list = new ConcessionariaListUpdate();
+                list.setVisible(true);
+                
                 String Smarca = tabelMostrar.getValueAt(selectRow,0).toString();
                 list.getTxtMarca().setText(Smarca);
                 
@@ -134,8 +131,15 @@ public class ConcesssionariaUpdate extends javax.swing.JFrame {
                 
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Algo deu errado "+e.getMessage(), 
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

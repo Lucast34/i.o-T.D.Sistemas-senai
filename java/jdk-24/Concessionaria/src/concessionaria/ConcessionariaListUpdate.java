@@ -4,6 +4,8 @@
  */
 package concessionaria;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -39,6 +41,7 @@ public class ConcessionariaListUpdate extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,11 +60,28 @@ public class ConcessionariaListUpdate extends javax.swing.JFrame {
         });
 
         jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Deletar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel5.setText("Área de Atualização");
+
+        jButton3.setText("X");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,31 +95,34 @@ public class ConcessionariaListUpdate extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(119, 119, 119)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtPorta, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                    .addComponent(txtAno)
-                                    .addComponent(txtTipo)
-                                    .addComponent(txtMarca)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jLabel5)))
-                        .addGap(0, 100, Short.MAX_VALUE)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(119, 119, 119)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPorta, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(txtAno)
+                            .addComponent(txtTipo)
+                            .addComponent(txtMarca))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -130,11 +153,58 @@ public class ConcessionariaListUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPortaActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private final Carro carro = new Carro();
+    private final CarroDAO carroDAO = new CarroDAO();
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Atualizar
+        
+        
+        carro.setMarca((txtMarca.getText().trim()));
+        carro.setTipo((txtTipo.getText().trim()));
+        carro.setAno((Integer.parseInt(txtAno.getText().trim())));
+        carro.setPorta((Integer.parseInt(txtPorta.getText().trim())));
+        
+        try{
+            carroDAO.atualizarUsuario(carro);
+            JOptionPane.showMessageDialog(this, "Carro atualizado com sucesso ");
+            dispose();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar o carro\n"
+                    + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Deletar
+        int confirmacao = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que excluir este carro?","Confirmação",
+                JOptionPane.YES_NO_OPTION);
+        
+        if(confirmacao == JOptionPane.YES_OPTION){
+            try {
+                carroDAO.deletarCarro(carro.getId());
+                JOptionPane.showMessageDialog(this,"Carro deletado com sucesso!");
+                dispose();
+                
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this,"Erro ao deletar o \n"
+                        +e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    private final Carro carro = new Carro();
-    private final CarroDAO carroDAO = new CarroDAO();
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -203,6 +273,7 @@ public class ConcessionariaListUpdate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
