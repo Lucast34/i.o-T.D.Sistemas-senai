@@ -4,28 +4,17 @@
  */
 package concessionaria;
 
-import java.sql.SQLException;
-
+/**
+ *
+ * @author ead
+ */
 public class Concessionaria {
 
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        
-        CarroDAO carDAO = new CarroDAO();
-             
-        Carro car = new Carro(0, "audi", 2016, "A7", 4);
-
-        
-        
-        try {
-            carDAO.criarCarro(car);
-            System.out.println("O Carro foi adcionado");
-            
-        } catch (SQLException e) {
-            System.out.println("Erro: "+e.getMessage());
-            
-        }
-        
+        // TODO code application logic here
     }
     
 }
