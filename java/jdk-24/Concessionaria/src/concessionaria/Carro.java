@@ -14,7 +14,8 @@ public class Carro {
     private int ano;
     private String tipo;
     private int portas;
-
+    
+    // Cheio
     public Carro(int id, String marca, int ano, String tipo, int portas) {
         this.id = id;
         this.marca = marca;
@@ -22,7 +23,14 @@ public class Carro {
         this.tipo = tipo;
         this.portas = portas;
     }
+    
+    // Vazio
 
+    public Carro() {
+    }
+    
+    
+    // getter setter
     public int getId() {
         return id;
     }
