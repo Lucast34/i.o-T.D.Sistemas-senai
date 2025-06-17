@@ -24,6 +24,7 @@ public class CarroDAO {
             pstm = conn.prepareCall(sql);
             
             pstm.setString(1, carro.getMarca());
+            
             pstm.setInt(2, carro.getAno());
             pstm.setString(3,carro.getTipo() );
             pstm.setInt(4, carro.getPortas());
@@ -102,5 +103,31 @@ public class CarroDAO {
             if(pstm != null && rs != null){pstm.close(); rs.close();}
         }
         return carro;
+    }
+    
+    public void atualizarCarro(Carro carro) throws SQLException{
+        
+        String sql = "UPDATE tb_carro SET marca = ?, ano = ?, "
+                + "tipo = ? , porta = ? WHERE id = ? ";
+        
+        PreparedStatement pstm;
+        pstm = null;
+        
+        try{
+            pstm = conn.prepareStatement(sql);
+            
+            pstm.setString(1, carro.getMarca());
+            pstm.setInt(2, carro.getAno());
+            pstm.setString(3, carro.getTipo());
+            pstm.setInt(4, carro.getPortas());
+            pstm.setInt(5, carro.getId());
+            
+            int linhaAfetadas = pstm.executeUpdate();
+            
+            if(linhaAfetadas > 0){}
+            
+        }catch(SQLException e){}finally{}
+        
+    
     }
 }
