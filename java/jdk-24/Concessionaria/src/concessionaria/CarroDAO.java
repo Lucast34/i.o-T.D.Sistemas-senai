@@ -124,10 +124,38 @@ public class CarroDAO {
             
             int linhaAfetadas = pstm.executeUpdate();
             
-            if(linhaAfetadas > 0){}
+            if(linhaAfetadas > 0){
+                System.out.println("Leitura concluida");
+            }else{
+                System.out.println("Linha não encontrada");
+            }
             
-        }catch(SQLException e){}finally{}
+        }catch(SQLException e){
+            System.out.println("ErrorCrDAOUpdate:"+e.getMessage());
+        }finally{
+            if(pstm != null)pstm.close();
+        }
+    }
+    
+    public void deleteCarro(int id) throws SQLException{
+        String sql = "DELETE FROM tb_carro WHERE id = ?";
         
+        PreparedStatement pstm;
+        pstm = null;
+        
+        try {
+            pstm = conn.prepareStatement(sql);
+            
+            pstm.setInt(1, id);
+            
+            pstm.executeUpdate();
+            
+            System.out.println("Carro deletado com sucesso");
+        } catch (SQLException e) {
+            System.out.println("ErrorCrDAODelete:"+e.getMessage());
+        } finally {
+            if(pstm != null) pstm.close();
+        }
     
     }
 }

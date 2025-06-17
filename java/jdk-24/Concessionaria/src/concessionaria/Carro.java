@@ -24,6 +24,15 @@ public class Carro {
         this.portas = portas;
     }
     
+    
+    // sem id
+    public Carro(String marca, int ano, String tipo, int portas){
+        this.marca = marca;
+        this.ano = ano;
+        this.tipo = tipo;
+        this.portas = portas;
+    }
+    
     // Vazio
 
     public Carro() {
