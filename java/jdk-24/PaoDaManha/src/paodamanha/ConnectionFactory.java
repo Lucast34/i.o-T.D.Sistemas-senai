@@ -20,7 +20,7 @@ public class ConnectionFactory {
             conn = DriverManager.getConnection(url, user, password);
             
         } catch (SQLException e) {
-            System.out.println("Erro"+e.getMessage());
+            System.out.println("ErrorConnectionFactory:"+e.getMessage());
         }
         return conn;
     }

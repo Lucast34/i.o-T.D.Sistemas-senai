@@ -22,9 +22,10 @@ public class PadariaDAO {
     public PadariaDAO(Connection connection) {
         this.connection = new ConnectionFactory().connectaBD();
     }
-    
+     
+    //create
     public void criarPadaria(Padaria padaria)throws SQLException{
-        String sql = "INSERT INTO  tb_adaria(nome,email,telefone)"
+        String sql = "INSERT INTO  tb_padaria(nome,email,telefone)"
                 + "values(?,?,?)";
         
         PreparedStatement pstmt;
@@ -43,7 +44,7 @@ public class PadariaDAO {
             
             
         } catch (SQLException e) {
-            System.out.println("Error: "+ e.getMessage());
+            System.out.println("ErrorPadariaDAOCreate: "+ e.getMessage());
         }
         finally{
             
@@ -53,6 +54,8 @@ public class PadariaDAO {
         }
         
     }
+    
+    // read
     public List<Padaria> listarPadarias() throws SQLException{
         
         List<Padaria> lista = new ArrayList<>();
@@ -83,7 +86,7 @@ public class PadariaDAO {
             }
             
         } catch (SQLException e) {
-            System.out.println("ERRO: "+e.getMessage());
+            System.out.println("ErrorPadariaDAOReadList: "+e.getMessage());
             
         } finally {
             if(rs != null && pstm != null){
@@ -94,6 +97,8 @@ public class PadariaDAO {
         return lista;
        
     }
+    
+    // read por id
     public Padaria bucasPadariaPorId(int id) throws SQLException{
         String sql = "SELECT * FROM tb_padaria WHERE id=?";
         
@@ -119,7 +124,7 @@ public class PadariaDAO {
             }
             
         } catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("ErrorPadariaDAOSearchForID: "+e.getMessage());
         } finally {
             if(rs != null && pstm != null){
                 rs.close();
@@ -129,6 +134,8 @@ public class PadariaDAO {
         return padaria;
         
     }
+    
+    // update
     public void atualizarPadaria(Padaria padaria) throws SQLException{
         String sql = "UPDATE tb_padaria SET nome = ?, email = ? , "
                 + "telefone= ? WHERE id = ? ";
@@ -143,7 +150,7 @@ public class PadariaDAO {
             pstmt.setString(1,padaria.getNome());
             pstmt.setString(2,padaria.getEmail());
             pstmt.setString(3,padaria.getTelefone());
-          
+            pstmt.setInt(5,padaria.getId());        
             
             int linhaAfetadas = pstmt.executeUpdate();
             
@@ -154,13 +161,14 @@ public class PadariaDAO {
             }
             
         } catch (SQLException e) {
-            System.out.println("ERROR: "+e.getMessage());
+            System.out.println("ErrorPadariaDAOUpdate: "+e.getMessage());
         } finally {
             if(pstmt != null)pstmt.close();
         
         }
     }
     
+    // delete
     public void deletePadaria(int id) throws SQLException{
         String sql = "DELETE FROM tb_padaria WHERE id = ?";
         
@@ -176,7 +184,7 @@ public class PadariaDAO {
             
             System.out.println("Padaria deletado com sucesso");
         } catch (SQLException e) {
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("ErrorPadariaDAODelete"+e.getMessage());
         } finally {
             if(pstm != null)pstm.close();
         }
