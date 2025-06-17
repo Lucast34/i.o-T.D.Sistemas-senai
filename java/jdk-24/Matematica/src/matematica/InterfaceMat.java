@@ -36,6 +36,7 @@ public class InterfaceMat extends javax.swing.JFrame {
         txtParImpar = new javax.swing.JTextField();
         lbResultadoParImpar = new javax.swing.JLabel();
         btnVerificar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,8 @@ public class InterfaceMat extends javax.swing.JFrame {
                 btnVerificarActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +99,10 @@ public class InterfaceMat extends javax.swing.JFrame {
                                 .addGap(74, 74, 74)
                                 .addComponent(jLabel1)))
                         .addGap(63, 63, 63))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +125,9 @@ public class InterfaceMat extends javax.swing.JFrame {
                     .addComponent(txtParImpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbResultadoParImpar)
                     .addComponent(btnVerificar))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,6 +188,7 @@ public class InterfaceMat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lbResultado;
     private javax.swing.JLabel lbResultadoParImpar;
     private javax.swing.JTextField txtA;

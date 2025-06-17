@@ -5,6 +5,16 @@
 package matematica;
 
 public class Matematica {
+    
+    private double a,b,c;
+
+    public Matematica(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        
+    }
+        
     public double soma(double a, double  b){
         return a+b;
     }
@@ -15,15 +25,38 @@ public class Matematica {
        return resultado;
     }
     
-    public String bhaskara(double a, double b, double c){
-        double delta = (Math.pow(b, 2)+(-4*(a*c)));
-        if (delta < 0){
-            return "A raiz não existe";
-        }else{
-            double X1 = ((-b)+ Math.sqrt(delta))/2*a;
-            double X2 = ((-b)- Math.sqrt(delta))/2*a;
-            
-            return String.format("\nDelta:%02f\nx1:%02f\nn2:%02f",delta,X1,X2);
-        }
+    public double bhaskaraDelta(){
+        return (Math.pow(b, 2)+(-4*(a*c)));
     }
+    
+    public double bhaskaraX1(){
+        double delta = bhaskaraDelta(a, b, c);
+        return ((-b)+ Math.sqrt(delta))/2*a;
+    }
+
+    public double getA() {
+        return a;
+    }
+
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    public void setC(double c) {
+        this.c = c;
+    }
+    
+    
 }
