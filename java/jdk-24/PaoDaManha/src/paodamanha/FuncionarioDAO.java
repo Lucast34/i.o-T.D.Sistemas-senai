@@ -14,13 +14,12 @@ public class FuncionarioDAO {
         this.conn = new ConnectionFactory().connectaBD();
     }
     
+    //Create
     public void adicionarFuncionario(Funcionario funcionario) throws SQLException{
         String sql = "INSERT INTO tb_funcionario(nome,cpf,telefone,idade,sexo)"
                 + "VALUES(?,?,?,?,?)";
         
-        
-        PreparedStatement pstm;
-        pstm = null;
+        PreparedStatement pstm = null ;
         
         try {
             pstm = conn.prepareCall(sql);
@@ -41,17 +40,14 @@ public class FuncionarioDAO {
         
     }
     
+    //Read all
     public List<Funcionario> listarFuncionarios() throws SQLException{
         String sql = "SELECT * FROM tb_funcionario";
         
         List<Funcionario> lista = new ArrayList<>();
         
-        
-        PreparedStatement pstm;
-        pstm = null;
-        
-        ResultSet rs;
-        rs = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         
         try {
             
@@ -64,13 +60,72 @@ public class FuncionarioDAO {
                 
                 fun.setId(rs.getInt("id"));
                 fun.setNome(rs.getString("nome"));
+                fun.setCpf(rs.getString("cpf"));
+                fun.setTelefone(rs.getString("telefone"));
+                fun.setIdade(rs.getInt("idade"));
+                fun.setSexo(rs.getString("sexo"));
                 
+                lista.add(fun);
+            }
+        } catch (SQLException e) {
+            System.out.println("ErrorFunDAOReadList:"+e.getMessage());
+        } finally {
+            if(rs != null)rs.close();
+            if(pstm != null)pstm.close();
+        }
+        
+        return lista;
+    }
+    
+    //Read for if
+    public Funcionario buscarPorId(int id)throws SQLException{
+        String sql = "SELECT * FROM tb_funcionario WHERE id= ?";
+        
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Funcionario fun = null;
+       
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            
+            if(rs.next()){
+                fun = new Funcionario();
+                
+                fun.setId(rs.getInt("id"));
+                fun.setNome(rs.getString("nome"));
+                fun.setCpf(rs.getString("cpf"));
+                fun.setTelefone(rs.getString("telefone"));
+                fun.setIdade(rs.getInt("idade"));
+                fun.setSexo(rs.getString("sexo"));
             }
             
+        } catch (SQLException e) {
+            System.out.println("ErrorFunDAOSearchForID:"+e.getMessage());
+        } finally {
+            if(rs != null)rs.close();
+            if(pstm != null)pstm.close();
+        }
+        return fun;
+    }
+    
+    //Update
+    public void atualizarFuncionario(Funcionario fun) throws SQLException{
+        String sql = "UPDATE tb_funcionaio SET nome = ?, cpf = ?, telefone = ?"
+                +"idade = ?, sexo = ?";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            
+            pstm = conn.prepareStatement(sql);
+            
+            pstm.setString(1, fun);
         } catch (Exception e) {
         } finally {
         }
         
-        return lista;
+        
     }
 }

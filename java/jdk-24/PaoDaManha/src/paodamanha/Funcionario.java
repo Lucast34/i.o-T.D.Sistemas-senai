@@ -16,6 +16,18 @@ public class Funcionario {
         this.idade = idade;
         this.sexo = sexo;
     }
+    
+    public Funcionario(String nome, String cpf, String telefone, int idade, String sexo){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+    
+    public Funcionario(){
+    
+    }
 
     public int getId() {
         return id;
