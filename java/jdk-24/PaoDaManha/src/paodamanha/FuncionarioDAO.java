@@ -2,6 +2,7 @@ package paodamanha;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,30 @@ public class FuncionarioDAO {
         List<Funcionario> lista = new ArrayList<>();
         
         
+        PreparedStatement pstm;
+        pstm = null;
         
+        ResultSet rs;
+        rs = null;
         
+        try {
+            
+            pstm = conn.prepareStatement(sql);
+            
+            rs = pstm.executeQuery();
+            
+            while(rs.next()){
+                Funcionario fun = new Funcionario();
+                
+                fun.setId(rs.getInt("id"));
+                fun.setNome(rs.getString("nome"));
+                
+            }
+            
+        } catch (Exception e) {
+        } finally {
+        }
+        
+        return lista;
     }
 }
